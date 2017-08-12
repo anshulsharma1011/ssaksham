@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{% if request.user.is_active and request.user.is_staff %}
+<a href="/trials/applications/cricket/">Cricket</a><br>
+<a href="/trials/applications/badminton/">Badminton</a><br>
+<a href="/trials/applications/football/">Football</a><br>
+<a href="/trials/applications/basketball/">Basketball</a><br>
+<a href="/trials/applications/volleyball/">Volleyball</a><br>
+<a href="/trials/applications/chess/">Chess</a><br>
+<a href="/trials/applications/carrom/">Carrom</a><br>
+<a href="/trials/applications/table_tennis/">Table Tennis</a><br>
+<a href="/trials/applications/tug_of_war/">Tug of War</a><br>
+<a href="/trials/applications/athletics/">Athletics</a><br>
+
+
+{% else %}
+<a href="/trials/apply/cricket/">Cricket</a><br>
+<a href="/trials/apply/badminton/">Badminton</a><br>
+<a href="/trials/apply/football/">Football</a><br>
+<a href="/trials/apply/basketball/">Basketball</a><br>
+<a href="/trials/apply/volleyball/">Volleyball</a><br>
+<a href="/trials/apply/chess/">Chess</a><br>
+<a href="/trials/apply/carrom/">Carrom</a><br>
+<a href="/trials/apply/table_tennis/">Table Tennis</a><br>
+<a href="/trials/apply/tug_of_war/">Tug of War</a><br>
+<a href="/trials/apply/athletics/">Athletics</a><br>
+{% endif %}
+</body>
+</html>

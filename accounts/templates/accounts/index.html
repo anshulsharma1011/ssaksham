@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{% if not user.is_authenticated %}
+    <a href="/accounts/login/">Log In</a>
+    {% elif request.user.is_active and request.user.is_staff %}
+    {% include "accounts/admin.html" %}
+    {% else %}
+    <h1> Hello </h1>
+    <a href="/accounts/logout/">Logout</a><br>
+    <a href="{% url 'accounts:profile-view' %}">Profile</a><br>
+    <a href="/trials/apply/">Apply for Trials</a><br>
+{% endif %}
+</body>
+</html>

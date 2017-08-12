@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+</head>
+<body>
+<h1>Hello</h1>
+<h1>Applications</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Name</th>
+            <th>Status</th>
+            <th>Cricket</th>
+            <th>Badminton</th>
+            <th>Football</th>
+            <th>Basketball</th>
+            <th>Volleyball</th>
+            <th>Chess</th>
+            <th>Carrom</th>
+            <th>Table Tennis</th>
+            <th>Tug of War</th>
+            <th>Athletics</th>
+        </tr>
+        {% for app in applications %}
+        <tr>
+            <td>{{ app.user }}</td>
+            <td>{{ app.name }}</td>
+            <td>{{ app.status }}</td>
+            <td>{{ app.cricket }}</td>
+            <td>{{ app.badminton }}</td>
+            <td>{{ app.football }}</td>
+            <td>{{ app.basketball }}</td>
+            <td>{{ app.volleyball }}</td>
+            <td>{{ app.chess }}</td>
+            <td>{{ app.carrom }}</td>
+            <td>{{ app.table_tennis }}</td>
+            <td>{{ app.tug_of_war }}</td>
+            <td>{{ app.athletics }}</td>
+        </tr>
+        {% endfor %}
+    </thead>
+
+</table>
+</body>
+</html>
