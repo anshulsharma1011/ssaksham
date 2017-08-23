@@ -9,6 +9,7 @@ class ScheduleCricket(models.Model):
     day = models.DateField(auto_now=False,auto_now_add=False,default=datetime.date.today)
     starting_date = models.DateField(auto_now=False,auto_now_add=False,default=datetime.date.today)
     closing_date = models.DateField(auto_now=False,auto_now_add=False,default=datetime.date.today)
+    date = models.DateField(auto_now=False,auto_now_add=False,default=datetime.date.today)
 
     def __str__(self):
         return self.host

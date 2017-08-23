@@ -7,29 +7,29 @@
 <body>
 
 {% if request.user.is_active and request.user.is_staff %}
-<a href="/trials/applications/cricket/">Cricket</a><br>
-<a href="/trials/applications/badminton/">Badminton</a><br>
-<a href="/trials/applications/football/">Football</a><br>
-<a href="/trials/applications/basketball/">Basketball</a><br>
-<a href="/trials/applications/volleyball/">Volleyball</a><br>
-<a href="/trials/applications/chess/">Chess</a><br>
-<a href="/trials/applications/carrom/">Carrom</a><br>
-<a href="/trials/applications/table_tennis/">Table Tennis</a><br>
-<a href="/trials/applications/tug_of_war/">Tug of War</a><br>
-<a href="/trials/applications/athletics/">Athletics</a><br>
+<a href="{% url 'trials:applications_cricket' %}">Cricket</a><br>
+<a href="{% url 'trials:applications_badminton' %}">Badminton</a><br>
+<a href="{% url 'trials:applications_football' %}">Football</a><br>
+<a href="{% url 'trials:applications_basketball' %}">Basketball</a><br>
+<a href="{% url 'trials:applications_volleyball' %}">Volleyball</a><br>
+<a href="{% url 'trials:applications_chess' %}">Chess</a><br>
+<a href="{% url 'trials:applications_carrom' %}">Carrom</a><br>
+<a href="{% url 'trials:applications_table_tennis' %}">Table Tennis</a><br>
+<a href="{% url 'trials:applications_tug_of_war' %}">Tug of War</a><br>
+<a href="{% url 'trials:applications_athletics' %}">Athletics</a><br>
 
 
 {% else %}
-<a href="/trials/apply/cricket/">Cricket</a><br>
-<a href="/trials/apply/badminton/">Badminton</a><br>
-<a href="/trials/apply/football/">Football</a><br>
-<a href="/trials/apply/basketball/">Basketball</a><br>
-<a href="/trials/apply/volleyball/">Volleyball</a><br>
-<a href="/trials/apply/chess/">Chess</a><br>
-<a href="/trials/apply/carrom/">Carrom</a><br>
-<a href="/trials/apply/table_tennis/">Table Tennis</a><br>
-<a href="/trials/apply/tug_of_war/">Tug of War</a><br>
-<a href="/trials/apply/athletics/">Athletics</a><br>
+<a href="{% url 'trials:apply_cricket' %}">Cricket</a><br>
+<a href="{% url 'trials:apply_badminton' %}">Badminton</a><br>
+<a href="{% url 'trials:apply_football' %}">Football</a><br>
+<a href="{% url 'trials:apply_basketball' %}">Basketball</a><br>
+<a href="{% url 'trials:apply_volleyball' %}">Volleyball</a><br>
+<a href="{% url 'trials:apply_chess' %}">Chess</a><br>
+<a href="{% url 'trials:apply_carrom' %}">Carrom</a><br>
+<a href="{% url 'trials:apply_table_tennis' %}">Table Tennis</a><br>
+<a href="{% url 'trials:apply_tug_of_war' %}">Tug of War</a><br>
+<a href="{% url 'trials:apply_athletics' %}">Athletics</a><br>
 {% endif %}
 </body>
 </html>

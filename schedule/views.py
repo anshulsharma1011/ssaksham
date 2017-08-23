@@ -27,7 +27,7 @@ class IndexView(View):
             form = self.form_class(request.POST)
             sch = form.save(commit=False)
             sch.closing_date = form.cleaned_data['closing_date']
-            sch.starting_date = sch.starting_date + datetime.timedelta(days=j)
+            sch.date = sch.starting_date + datetime.timedelta(days=j)
             sch.host = i[0]
             sch.opponent = i[1]
             sch.save()

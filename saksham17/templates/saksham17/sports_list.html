@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>SPORTS INCLUDED</h1>
+
+{% for sp in sports %}
+
+<a href="{% url 'saksham17:sports_details' sp.id %}">{{ sp.name }} - {{ sp.type }}</a>
+
+{% endfor %}
+
+</body>
+</html>

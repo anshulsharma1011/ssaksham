@@ -1,12 +1,13 @@
 from django.shortcuts import render
 from django.views import generic
-from django.views.generic import CreateView, ListView, View, TemplateView
-from .models import ApplyCricket,ApplyBadminton,ApplyFootball,ApplyBasketBall,ApplyVolleyBall,ApplyChess,ApplyCarrom,ApplyTableTennis
+from django.views.generic import CreateView, ListView, View, TemplateView, DetailView
+from .models import ApplyCricket,ApplyBadminton,ApplyFootball,ApplyTugOfWar,ApplyAthletics,ApplyBasketBall,ApplyVolleyBall,ApplyChess,ApplyCarrom,ApplyTableTennis
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 from django.utils.decorators import method_decorator
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import redirect
-from .forms import ApplyCricketForm,ApplyBadmintonForm,ApplyFootballForm,ApplyBasketballForm,ApplyVolleyballForm,ApplyChessForm,ApplyCarromForm,ApplyTableTennisForm
+from .forms import ApplyCricketForm,ApplyBadmintonForm,ApplyTugOfWarForm,ApplyAthleticsForm,ApplyFootballForm,ApplyBasketballForm,ApplyVolleyballForm,ApplyChessForm,ApplyCarromForm,ApplyTableTennisForm
 from accounts.models import Profile
 from django.contrib.auth.models import User
 # Create your views here.
@@ -34,74 +35,242 @@ class ViewApplications(TemplateView):
 #         return Apply.objects.all()
 
 class ViewApplicationsCricket(ListView):
-    template_name = 'trials/applications_game_wise.html'
+    template_name = 'trials/applications_game_wise_cricket.html'
     context_object_name = 'app_game'
 
     def get_queryset(self):
         return ApplyCricket.objects.all()
 
+
 class ViewApplicationsBadminton(ListView):
-    template_name = 'trials/applications_game_wise.html'
+    template_name = 'trials/applications_game_wise_badminton.html'
     context_object_name = 'app_game'
 
     def get_queryset(self):
         return ApplyBadminton.objects.all()
 
 class ViewApplicationsFootball(ListView):
-    template_name = 'trials/applications_game_wise.html'
+    template_name = 'trials/applications_game_wise_football.html'
     context_object_name = 'app_game'
 
     def get_queryset(self):
         return ApplyFootball.objects.all()
 #
 class ViewApplicationsBasketball(ListView):
-    template_name = 'trials/applications_game_wise.html'
+    template_name = 'trials/applications_game_wise_basketball.html'
     context_object_name = 'app_game'
 
     def get_queryset(self):
         return ApplyBasketBall.objects.all()
 
 class ViewApplicationsVolleyball(ListView):
-    template_name = 'trials/applications_game_wise.html'
+    template_name = 'trials/applications_game_wise_volleyball.html'
     context_object_name = 'app_game'
 
     def get_queryset(self):
         return ApplyVolleyBall.objects.all()
 #
 class ViewApplicationsChess(ListView):
-    template_name = 'trials/applications_game_wise.html'
+    template_name = 'trials/applications_game_wise_chess.html'
     context_object_name = 'app_game'
 
     def get_queryset(self):
         return ApplyChess.objects.filter(chess=True)
 #
 class ViewApplicationsCarrom(ListView):
-    template_name = 'trials/applications_game_wise.html'
+    template_name = 'trials/applications_game_wise_carrom.html'
     context_object_name = 'app_game'
 
     def get_queryset(self):
         return ApplyCarrom.objects.all()
 #
 class ViewApplicationsTableTennis(ListView):
-    template_name = 'trials/applications_game_wise.html'
+    template_name = 'trials/applications_game_wise_table_tennis.html'
     context_object_name = 'app_game'
 
     def get_queryset(self):
         return ApplyTableTennis.objects.all()
 #
-# class ViewApplicationsTugOfWar(ListView):
-#     template_name = 'trials/applications_game_wise.html'
-#     context_object_name = 'app_game'
+class ViewApplicationsTugOfWar(ListView):
+    template_name = 'trials/applications_game_wise_tug_of_war.html'
+    context_object_name = 'app_game'
+
+    def get_queryset(self):
+        return ApplyTugOfWar.objects.all()
 #
-#     def get_queryset(self):
-#         return Apply.objects.filter(tug_of_war=True)
-#
-# class ViewApplicationsAthletics(ListView):
-#     template_name = 'trials/applications_game_wise.html'
-#     context_object_name = 'app_game'
-#
-#     def get_queryset(self):
-#         return Apply.objects.filter(athletics=True)
+class ViewApplicationsAthletics(ListView):
+    template_name = 'trials/applications_game_wise_athletics.html'
+    context_object_name = 'app_game'
+
+    def get_queryset(self):
+        return ApplyAthletics.objects.all()
+
+def SelectedCricket(request):
+    try:
+        for key in request.POST.keys():
+            if 'app' in key:
+                print(int(key.replace('app',''))+1)
+                selected_user=ApplyCricket.objects.get(pk=int(key.replace('app',''))-1)
+                selected_user.status = True
+                selected_user.save()
+        return HttpResponse("Players Selected")
+
+    except (KeyError, User.DoesNotExist):
+        return render(request,'trials/applications_game_wise_cricket.html',{
+            'error_message':"kjebfiwhuefnwne"
+        })
+    return HttpResponse("Players Selected")
+
+def SelectedBadminton(request):
+    try:
+        for key in request.POST.keys():
+            if 'app' in key:
+                print(int(key.replace('app',''))+1)
+                selected_user=ApplyBadminton.objects.get(pk=int(key.replace('app','')))
+                selected_user.status = True
+                selected_user.save()
+        return HttpResponse("Players Selected")
+
+        # selected_user = ApplyCricket.objects.get(pk=request.POST('app'))
+    except (KeyError, User.DoesNotExist):
+        return render(request,'trials/applications_game_wise_badminton.html',{
+            'error_message':"kjebfiwhuefnwne"
+        })
+    return HttpResponse("Players Selected")
+
+def SelectedFootball(request):
+    try:
+        for key in request.POST.keys():
+            if 'app' in key:
+                print(int(key.replace('app',''))+1)
+                selected_user=ApplyFootball.objects.get(pk=int(key.replace('app','')))
+                selected_user.status = True
+                selected_user.save()
+        return HttpResponse("Players Selected")
+
+        # selected_user = ApplyCricket.objects.get(pk=request.POST('app'))
+    except (KeyError, User.DoesNotExist):
+        return render(request,'trials/applications_game_wise_football.html',{
+            'error_message':"kjebfiwhuefnwne"
+        })
+    return HttpResponse("Players Selected")
+
+def SelectedBasketball(request):
+    try:
+        for key in request.POST.keys():
+            if 'app' in key:
+                print(int(key.replace('app',''))+1)
+                selected_user=ApplyBasketBall.objects.get(pk=int(key.replace('app','')))
+                selected_user.status = True
+                selected_user.save()
+        return HttpResponse("Players Selected")
+
+        # selected_user = ApplyCricket.objects.get(pk=request.POST('app'))
+    except (KeyError, User.DoesNotExist):
+        return render(request,'trials/applications_game_wise_basketball.html',{
+            'error_message':"kjebfiwhuefnwne"
+        })
+    return HttpResponse("Players Selected")
+
+def SelectedVolleyball(request):
+    try:
+        for key in request.POST.keys():
+            if 'app' in key:
+                print(int(key.replace('app',''))+1)
+                selected_user=ApplyVolleyBall.objects.get(pk=int(key.replace('app','')))
+                selected_user.status = True
+                selected_user.save()
+        return HttpResponse("Players Selected")
+
+        # selected_user = ApplyCricket.objects.get(pk=request.POST('app'))
+    except (KeyError, User.DoesNotExist):
+        return render(request,'trials/applications_game_wise_volleyball.html',{
+            'error_message':"kjebfiwhuefnwne"
+        })
+    return HttpResponse("Players Selected")
+
+def SelectedChess(request):
+    try:
+        for key in request.POST.keys():
+            if 'app' in key:
+                print(int(key.replace('app',''))+1)
+                selected_user=ApplyChess.objects.get(pk=int(key.replace('app','')))
+                selected_user.status = True
+                selected_user.save()
+        return HttpResponse("Players Selected")
+
+        # selected_user = ApplyCricket.objects.get(pk=request.POST('app'))
+    except (KeyError, User.DoesNotExist):
+        return render(request,'trials/applications_game_wise_chess.html',{
+            'error_message':"kjebfiwhuefnwne"
+        })
+    return HttpResponse("Players Selected")
+
+def SelectedCarrom(request):
+    try:
+        for key in request.POST.keys():
+            if 'app' in key:
+                selected_user=ApplyCarrom.objects.get(pk=int(key.replace('app','')))
+                selected_user.status = True
+                selected_user.save()
+        return HttpResponse("Players Selected")
+
+        # selected_user = ApplyCricket.objects.get(pk=request.POST('app'))
+    except (KeyError, User.DoesNotExist):
+        return render(request,'trials/applications_game_wise_carrom.html',{
+            'error_message':"kjebfiwhuefnwne"
+        })
+    return HttpResponse("Players Selected")
+
+def SelectedTableTennis(request):
+    try:
+        for key in request.POST.keys():
+            if 'app' in key:
+                selected_user=ApplyTableTennis.objects.get(pk=int(key.replace('app','')))
+                selected_user.status = True
+                selected_user.save()
+        return HttpResponse("Players Selected")
+
+        # selected_user = ApplyCricket.objects.get(pk=request.POST('app'))
+    except (KeyError, User.DoesNotExist):
+        return render(request,'trials/applications_game_wise_table_tennis.html',{
+            'error_message':"kjebfiwhuefnwne"
+        })
+    return HttpResponse("Players Selected")
+
+def SelectedTugOfWar(request):
+    try:
+        for key in request.POST.keys():
+            if 'app' in key:
+                print(int(key.replace('app',''))+1)
+                selected_user=ApplyTugOfWar.objects.get(pk=int(key.replace('app','')))
+                selected_user.status = True
+                selected_user.save()
+        return HttpResponse("Players Selected")
+
+        # selected_user = ApplyCricket.objects.get(pk=request.POST('app'))
+    except (KeyError, User.DoesNotExist):
+        return render(request,'trials/applications_game_wise_tug_of_war.html',{
+            'error_message':"kjebfiwhuefnwne"
+        })
+    return HttpResponse("Players Selected")
+
+def SelectedAthletics(request):
+    try:
+        for key in request.POST.keys():
+            if 'app' in key:
+                print(int(key.replace('app',''))+1)
+                selected_user=ApplyAthletics.objects.get(pk=int(key.replace('app','')))
+                selected_user.status = True
+                selected_user.save()
+        return HttpResponse("Players Selected")
+
+        # selected_user = ApplyCricket.objects.get(pk=request.POST('app'))
+    except (KeyError, User.DoesNotExist):
+        return render(request,'trials/applications_game_wise_athletics.html',{
+            'error_message':"kjebfiwhuefnwne"
+        })
+    return HttpResponse("Players Selected")
 
 @method_decorator(login_required,name="dispatch")
 class ApplyView(TemplateView):
@@ -230,7 +399,7 @@ class ApplyChessView(View):
         return render(request,self.template_name,{'form':form})
 
     def post(self,request):
-        form = self.form_class(commit=False)
+        form = self.form_class(request.POST)
 
         if form.is_valid():
             chess = form.save(commit=False)
@@ -252,7 +421,7 @@ class ApplyCarromView(View):
         return render(request,self.template_name,{'form':form})
 
     def post(self,request):
-        form = self.form_class(commit=False)
+        form = self.form_class(request.POST)
 
         if form.is_valid():
             carrom = form.save(commit=False)
@@ -275,7 +444,7 @@ class ApplyTableTennisView(View):
         return render(request,self.template_name,{'form':form})
 
     def post(self,request):
-        form = self.form_class(commit=False)
+        form = self.form_class(request.POST)
 
         if form.is_valid():
             table_tennis = form.save(commit=False)
@@ -284,5 +453,49 @@ class ApplyTableTennisView(View):
             table_tennis.table_tennis = True
             table_tennis.past = form.cleaned_data['past']
             table_tennis.save()
+            return redirect('accounts:index')
+        return render(request,self.template_name,{'form':form})
+
+@method_decorator(login_required, name="dispatch")
+class ApplyTugOfWarView(View):
+    form_class = ApplyTugOfWarForm
+    template_name = 'trials/cricket.html'
+
+    def get(self,request):
+        form = self.form_class
+        return render(request,self.template_name,{'form':form})
+
+    def post(self,request):
+        form = self.form_class(request.POST)
+
+        if form.is_valid():
+            tug_of_war = form.save(commit=False)
+            tug_of_war.user = request.user
+            tug_of_war.fullname = Profile.objects.get(user=request.user).fullname
+            tug_of_war.tug_of_war = True
+            tug_of_war.past = form.cleaned_data['past']
+            tug_of_war.save()
+            return redirect('accounts:index')
+        return render(request,self.template_name,{'form':form})
+
+@method_decorator(login_required, name="dispatch")
+class ApplyAthleticsView(View):
+    form_class = ApplyAthleticsForm
+    template_name = 'trials/cricket.html'
+
+    def get(self,request):
+        form = self.form_class
+        return render(request,self.template_name,{'form':form})
+
+    def post(self,request):
+        form = self.form_class(request.POST)
+
+        if form.is_valid():
+            athletics = form.save(commit=False)
+            athletics.user = request.user
+            athletics.fullname = Profile.objects.get(user=request.user).fullname
+            athletics.athletics = True
+            athletics.past = form.cleaned_data['past']
+            athletics.save()
             return redirect('accounts:index')
         return render(request,self.template_name,{'form':form})

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>SPORTS INCLUDED</h1>
+
+{% for team in teams %}
+
+<a href="{% url 'saksham17:teams_details' team.id %}">{{ team.branch_initials }}</a>
+
+{% endfor %}
+
+</body>
+</html>

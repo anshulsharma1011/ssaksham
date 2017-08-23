@@ -47,6 +47,7 @@ class ApplyCricket(models.Model):
     player_type = models.CharField(max_length=30,choices=CRICKET_CHOICES,default='')
     cricket = models.BooleanField(default=False)
     preferred_hand = models.CharField(max_length=6,choices=HAND_CHOICES,default='')
+    status = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.username
@@ -64,7 +65,7 @@ class ApplyBadminton(models.Model):
     fullname = models.CharField(max_length=30,default='')
     preferred_hand = models.CharField(max_length=6,choices=HAND_CHOICES,default='')
     past = models.CharField(default='Never Played in Tournament',choices=BADMINTON_CHOICES,max_length=50)
-
+    status = models.BooleanField(default=False)
     def __str__(self):
         return self.user.username
 
@@ -79,7 +80,7 @@ class ApplyFootball(models.Model):
     fullname = models.CharField(max_length=30,default='')
     left_or_right = models.CharField(max_length=6,choices=HAND_CHOICES,default='')
     position = models.CharField(default='Never Played in Tournament',choices=FOOTBALL_CHOICES,max_length=50)
-
+    status = models.BooleanField(default=False)
     def __str__(self):
         return self.user.username
 
@@ -88,7 +89,7 @@ class ApplyBasketBall(models.Model):
     basketball = models.BooleanField(default=False)
     fullname = models.CharField(max_length=30,default='')
     past = models.CharField(default='Never Played in Tournament',choices=BADMINTON_CHOICES,max_length=50)
-
+    status = models.BooleanField(default=False)
     def __str__(self):
         return self.user.username
 
@@ -96,6 +97,7 @@ class ApplyVolleyBall(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     volleyball = models.BooleanField(default=False)
     fullname = models.CharField(max_length=30,default='')
+    status = models.BooleanField(default=False)
     past = models.CharField(default='Never Played in Tournament',choices=BADMINTON_CHOICES,max_length=50)
     def __str__(self):
         return self.user.username
@@ -105,7 +107,7 @@ class ApplyChess(models.Model):
     chess = models.BooleanField(default=False)
     fullname = models.CharField(max_length=30,default='')
     past = models.CharField(default='Never Played in Tournament',choices=BADMINTON_CHOICES,max_length=50)
-
+    status = models.BooleanField(default=False)
     def __str__(self):
         return self.user.username
 
@@ -114,7 +116,7 @@ class ApplyCarrom(models.Model):
     carrom = models.BooleanField(default=False)
     fullname = models.CharField(max_length=30,default='')
     past = models.CharField(default='Never Played in Tournament',choices=BADMINTON_CHOICES,max_length=50)
-
+    status = models.BooleanField(default=False)
     def __str__(self):
         return self.user.username
 
@@ -123,6 +125,25 @@ class ApplyTableTennis(models.Model):
     table_tennis = models.BooleanField(default=False)
     fullname = models.CharField(max_length=30,default='')
     past = models.CharField(default='Never Played in Tournament',choices=BADMINTON_CHOICES,max_length=50)
+    status = models.BooleanField(default=False)
+    def __str__(self):
+        return self.user.username
 
+class ApplyTugOfWar(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    tug_of_war = models.BooleanField(default=False)
+    fullname = models.CharField(max_length=30,default='')
+    past = models.CharField(default='Never Played in Tournament',choices=BADMINTON_CHOICES,max_length=50)
+    status = models.BooleanField(default=False)
+    def __str__(self):
+        return self.user.username
+
+
+class ApplyAthletics(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    athletics = models.BooleanField(default=False)
+    fullname = models.CharField(max_length=30,default='')
+    past = models.CharField(default='Never Played in Tournament',choices=BADMINTON_CHOICES,max_length=50)
+    status = models.BooleanField(default=False)
     def __str__(self):
         return self.user.username

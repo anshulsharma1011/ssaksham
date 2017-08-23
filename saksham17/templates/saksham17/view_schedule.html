@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+</head>
+<body>
+<h1>Hello</h1>
+<h1>Schedule</h1>
+<table>
+    <thead>
+        <tr>
+            <th>HOST</th>
+            <th>OPPONENT</th>
+            <th>DATE</th>
+            <th>Match No</th>
+        </tr>
+        {% for sch in schedule %}
+        <tr>
+            <td><a href="{% url 'saksham17:schedule_details' sch.id %}">{{ sch.host }}</a></td>
+            <td><a href="{% url 'saksham17:schedule_details' sch.id %}">{{ sch.opponent }}</a></td>
+            <td><a href="{% url 'saksham17:schedule_details' sch.id %}">{{ sch.date }}</a></td>
+            <td><a href="{% url 'saksham17:schedule_details' sch.id %}">{{ sch.match_no }}</a></td>
+        </tr>
+        {% endfor %}
+    </thead>
+
+</table>
+</body>
+</html>

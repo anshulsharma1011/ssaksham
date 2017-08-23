@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django import forms
-from .models import Apply,ApplyCricket,ApplyBadminton,ApplyFootball,ApplyBasketBall,ApplyVolleyBall,ApplyChess,ApplyCarrom,ApplyTableTennis
+from .models import Apply,ApplyCricket,ApplyBadminton,ApplyFootball,ApplyAthletics,ApplyTugOfWar,ApplyBasketBall,ApplyVolleyBall,ApplyChess,ApplyCarrom,ApplyTableTennis
 from django.core.exceptions import ObjectDoesNotExist
 
 class ApplyCricketForm(forms.ModelForm):
@@ -41,4 +41,14 @@ class ApplyCarromForm(forms.ModelForm):
 class ApplyTableTennisForm(forms.ModelForm):
     class Meta:
         model = ApplyTableTennis
+        fields = ['past']
+
+class ApplyTugOfWarForm(forms.ModelForm):
+    class Meta:
+        model = ApplyTugOfWar
+        fields = ['past']
+
+class ApplyAthleticsForm(forms.ModelForm):
+    class Meta:
+        model = ApplyAthletics
         fields = ['past']
