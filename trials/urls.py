@@ -45,4 +45,5 @@ urlpatterns = [
     url(r'^apply/cricket/selected/tug_of_war/$',views.SelectedTugOfWar,name='selected_tug_war'),
     url(r'^apply/cricket/selected/athletics/$',views.SelectedAthletics,name='selected_athletics'),
 
+
 ]

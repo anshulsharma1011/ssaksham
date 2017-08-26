@@ -8,13 +8,12 @@
 <h1>Hello</h1>
 <h1>Applications</h1>
 <table>
-    <thead>
-        <tr>
+    <tr>
             <th>Username</th>
             <th>Name</th>
             <th>Status</th>
             <th>SELECT</th>
-        </tr>
+    </tr>
 
         <form action="{% url 'trials:selected' %}" method = "post">
             {% csrf_token %}
@@ -32,8 +31,6 @@
         {% endfor %}
         <input type="submit" value="Submit">
         </form>
-    </thead>
-
 </table>
 </body>
 </html>

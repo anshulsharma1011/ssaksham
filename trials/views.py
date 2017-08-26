@@ -499,3 +499,4 @@ class ApplyAthleticsView(View):
             athletics.save()
             return redirect('accounts:index')
         return render(request,self.template_name,{'form':form})
+

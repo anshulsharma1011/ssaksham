@@ -10,5 +10,24 @@ TEAM 1 - {{ schedulecricket.host }}<br>
 TEAM 2 - {{ schedulecricket.opponent }}<br>
 MATCH DATE - {{ schedulecricket.date }}<br>
 MATCH NUMBER - {{ schedulecricket.match_no }}<br>
+<br><br>
+WINNER - {{ schedulecricket.winner }}<br>
+RUNNER-UP - {{ schedulecricket.runner_up }}<br>
+
+{% if request.user.is_active and request.user.is_staff %}
+
+    <form action="{% url 'saksham17:set_winner_cricket' %}" method="post">
+        {% csrf_token %}
+        <select name="winner_value">
+            <option name="team1" value="{{ schedulecricket.host }}">{{ schedulecricket.host }}</option>
+            <option name="team2" value="{{ schedulecricket.opponent }}">{{ schedulecricket.opponent }}</option>
+            <option name="tie" value="tie">TIE</option>
+            <option name="no" value="tie">No Result</option>
+        </select>
+        <input type="hidden" name="match" value="{{ schedulecricket.id }}">
+        <input type="submit" value="Sumbit">
+    </form>
+
+{% endif %}
 </body>
 </html>

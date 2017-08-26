@@ -25,3 +25,4 @@ admin.site.register(ApplyCarrom)
 admin.site.register(ApplyTableTennis)
 admin.site.register(ApplyTugOfWar)
 admin.site.register(ApplyAthletics)
+

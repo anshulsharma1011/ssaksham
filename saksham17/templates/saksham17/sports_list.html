@@ -10,7 +10,7 @@
 {% for sp in sports %}
 
 <a href="{% url 'saksham17:sports_details' sp.id %}">{{ sp.name }} - {{ sp.type }}</a>
-
+{{ teams.branch_name }}
 {% endfor %}
 
 </body>

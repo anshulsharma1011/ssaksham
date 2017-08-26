@@ -9,12 +9,13 @@
 <h1>Applications</h1>
 <table>
     <thead>
-        <tr>
+
             <th>Username</th>
             <th>Name</th>
             <th>Status</th>
             <th>SELECT</th>
-        </tr>
+        
+    </thead>
 
         <form action="{% url 'trials:selected_athletics' %}" method = "post">
             {% csrf_token %}
@@ -30,10 +31,8 @@
                 </td>
             </tr>
         {% endfor %}
-        <input type="submit" value="Submit">
+            <input type="submit" value="Submit">
         </form>
-    </thead>
-
 </table>
 </body>
 </html>
