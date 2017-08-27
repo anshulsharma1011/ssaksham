@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView,ListView,DetailView,CreateView,View
-from .models import Sports,Teams,ScheduleCricket,PointsTableCricket
-from .forms import ScheduleCricketForm
+from .models import Sports,Teams,ScheduleCricket,PointsTableCricket,MatchDetails
+from .forms import ScheduleCricketForm,MatchDetailsForm
+from trials.models import ApplyCricket
 from django.http import HttpResponse
 import itertools
 import datetime
@@ -93,6 +94,12 @@ class ViewScheduleCricketList(ListView):
 class ViewScheduleCricketDetail(DetailView):
     model = ScheduleCricket
     template_name = 'saksham17/match_details.html'
+    context_object_name = 'schedulecricket'
+
+    def get_context_data(self, **kwargs):
+        context = super(ViewScheduleCricketDetail,self).get_context_data(**kwargs)
+        context['players'] = ApplyCricket.objects.filter(status=True)
+        return context
 
 def SetWinnerCricket(request):
     match_id = request.POST.get("match","")
@@ -173,4 +180,27 @@ class PointsTableCricketView(ListView):
     def get_queryset(self):
         return PointsTableCricket.objects.all().order_by('-points')
 
-def CricketKnockoutSchedule(request):
+def MatchDetailsCreateView(request):
+    match_number = request.POST.get("match_no","")
+    list1=[]
+    list2=[]
+    error = ""
+    for key in request.POST.keys():
+        if 'player' in key:
+            name = ApplyCricket.objects.get(pk=int(key.replace('player','')))
+            list1.append(name.fullname)
+
+    for i in range (0,len(list1)+1):
+        list2.append(i)
+        form = MatchDetailsForm(request.POST)
+        # error = "Error1"
+        if request.method == "POST":
+            error = form.errors
+            if form.is_valid():
+                error = "Error2"
+                player = form.save(commit=False)
+                player.match_no = match_number
+                player.player_name = list1[i]
+                player.save()
+                error = "Error3"
+    return HttpResponse(error)

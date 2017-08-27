@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>jsdkadjad</h1>
+
+<form action="{% url 'saksham17:match_details_create' %}" method="post">
+        <input type="hidden" name="match_no" value="{{ schedulecricket.match_no }}">
+            {% csrf_token %}
+            {% include 'accounts/form_template.html' %}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

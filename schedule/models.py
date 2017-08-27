@@ -4,7 +4,7 @@ import datetime
 # Create your models here.
 
 class ScheduleCricket(models.Model):
-    host = models.CharField(max_length=50,default='')
+    host = models.CharField(max_length=50,default=0)
     opponent = models.CharField(max_length=50,default='')
     day = models.DateField(auto_now=False,auto_now_add=False,default=datetime.date.today)
     starting_date = models.DateField(auto_now=False,auto_now_add=False,default=datetime.date.today)

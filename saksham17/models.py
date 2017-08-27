@@ -68,3 +68,17 @@ class PointsTableCricket(models.Model):
 
     def __str__(self):
         return self.team
+
+class MatchDetails(models.Model):
+    match_no = models.ForeignKey(ScheduleCricket,on_delete=models.CASCADE)
+    player_name = models.CharField(max_length=20,default='')
+    runs_scored = models.IntegerField(default=0)
+    balls_faced = models.IntegerField(default=0)
+    fours = models.IntegerField(default=0)
+    sixes = models.IntegerField(default=0)
+    strike_rate = models.FloatField(default=0)
+    overs_bowled = models.FloatField(default=0)
+    runs_conceded = models.IntegerField(default=0)
+
+    def __str__(self):
+        return str(self.player_name + " - " + self.match_no)

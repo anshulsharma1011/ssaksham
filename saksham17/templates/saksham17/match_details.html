@@ -27,7 +27,25 @@ RUNNER-UP - {{ schedulecricket.runner_up }}<br>
         <input type="hidden" name="match" value="{{ schedulecricket.id }}">
         <input type="submit" value="Sumbit">
     </form>
+<br><br><br><br><br><br><br><br><br><br><br>
 
+    <form action="{% url 'saksham17:match_details_create' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="match_no" value="{{ schedulecricket.match_no }}">
+        <table>
+        {% for player in players %}
+            <tr>
+                <td>{{ player.user }}</td>
+                <td>{{ player.fullname }}</td>
+                <td>{{ player.status }}</td>
+                <td>
+                    <input type="checkbox" name="player{{ player.id }}" value="player{{ player.id }}">
+                </td>
+            </tr>
+        {% endfor %}
+        </table>
+        <input type="submit" value="MATCH DETAILS">
+    </form>
 {% endif %}
 </body>
 </html>
